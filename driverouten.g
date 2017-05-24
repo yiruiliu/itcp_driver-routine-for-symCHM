@@ -147,22 +147,6 @@ od;
 return r;
 end;
 
-
-
-#noncanonical to canonical
-nonc2canonical:=function(orbit)
-local i, j, index1, index2, r;
-r:=rec();
-for i in [1..Size(orbit)] do
-index1:=NKKset2int(orbit[i][1],n,k);
-for j in [1..Size(orbit[i])] do
-index2:=NKKset2int(orbit[i][j],n,k);
-r.(index2):=index1;
-od;
-od;
-return r;
-end;
-
 # NKKset2int
 NKKset2int_givenlist:=function(s,list)
 local i,j,k;
@@ -210,6 +194,7 @@ od;
 return [o, canonical];
 end;
 
+# record of canonical set to grow set
 NKKcanonical2gr:=function(canonical,r2,n,k)
 local r, i, int, gr;
 r:=rec();
@@ -306,7 +291,6 @@ return set;
 end;
 
 #NKK inequality generator
-
 NKKinequality_no_degerate:=function(canonical2gr,nonc2canonical,n,kk)
 local list, l, ii, nkk, i, j, xi, xj, XK, k, Xk, set1, set2, set3, set4, int1, int2, int3,
 int4, r1, r2, h1, h2, h3, h4, H, Co, HH, CCo, i1, j1, indicator, k1, lstr, lset;
@@ -485,7 +469,7 @@ fi;
   return leq;
   end;
 
-  EqualRec2:=function(list)
+  EqualRec:=function(list)
   local list2, i, ll1, ll2, j, leq;
   leq:=[];
   list2:=ShallowCopy(list);
