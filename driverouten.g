@@ -1,3 +1,22 @@
+###################### main function
+NKKdegenerateinequality:=function(n,k)
+local vars,ocanonical,o,canonical,r2,r1,LAb;
+vars:=NKKVars(n,k);
+ocanonical:=NKKOrbit(n,k);
+o:=ocanonical[1];
+canonical:=ocanonical[2];
+r2:=nonc2canonical(o,n,k);
+r1:=NKKcanonical2gr(canonical,r2,n,k);
+list:=NKKinequality_no_degerate(r1,r2,n,k);
+LAb:=LinrowsandAb(list);
+# LAb[1] is the indices of equivalent constraints
+# LAb[2] is the A matrix
+# LAb[3] is the b vector
+return LAb;
+end;
+
+######################
+
 # all variables for (4,3,3)
 
 NKKVars:= function(n,k)
